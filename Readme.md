@@ -18,6 +18,7 @@ La disposición de pines se muestra en la siguiente imagen:
 Para el parpadeo de LED usaremos
 
 ## Clase 2: Station Mode (STA) y Access Point Mode.
+Modo Access Point(AP). Nos permite que el módulo "cree" su propia red Wi Fi.
 
 Modo Station (STA). Este modo nos permitirá configurar el WLAN en ESP32 como host para que otros clientes se conecten a él. Esto es muy útil para entornos donde no dispones de router y necesitas conectarte al ESP32, o simplemente si quieres prescindir de él y crear una red propia.
 

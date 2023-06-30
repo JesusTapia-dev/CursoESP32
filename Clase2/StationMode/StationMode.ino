@@ -9,7 +9,7 @@ void setup(){
   Serial.begin(115200);
   Serial.println("\n");
   //Nos conectamos a internet
-  WiFi.mode(WIFI_AP);
+  WiFi.mode(WIFI_STA);
   WiFi.begin(ssid,password);
   while(WiFi.status()!= WL_CONNECTED and cont<max_intentos){
     delay(50);
