@@ -1,8 +1,6 @@
 #include <ESP8266WiFi.h>        // Include the Wi-Fi library
-
+#include "config.h"
 // Configuración de la WiFi generada
-const char* ssid="ESP8266";
-const char* password="12345678";
 
 void setup() {
   Serial.begin(115200);
