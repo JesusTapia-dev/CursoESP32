@@ -32,6 +32,8 @@ void setup()
   Serial.println("Conexión establecida");  
   Serial.print("IP address:\t");
   Serial.println(WiFi.localIP());
+
+
 /* En el caso deseemos conectarnos en modo Access Point
     WiFi.softAP(ssid, password);
   WiFi.softAPConfig(ip, gateway, subnet);
