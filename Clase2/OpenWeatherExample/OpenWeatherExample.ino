@@ -6,10 +6,10 @@ const char* ssid="DESKTOP";
 const char* password="12345678";
 //Ponemos nuestra API KEY y los datos de la ciudad
 String openWeatherMapApiKey ="31ad1df817a08cfd6464305deb33fcf0";
+//los codigos son segun la ISO
 String city = "Porto";
 String countryCode = "PT";
 String serverPath = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + countryCode + "&APPID=" + openWeatherMapApiKey;
-
 
 unsigned long lastTime = 0;
 // Timer set to 10 minutes (600000)
@@ -47,7 +47,7 @@ void loop() {
         Serial.println("Parsing input failed!");
         return;
       }
-         
+      //La temperatura esta en kelvin
       Serial.print("JSON object = ");
       Serial.println(myObject);
       Serial.print("Temperatura: ");
@@ -66,9 +66,9 @@ void loop() {
 
 String httpGETRequest(const char* serverName) {
   HTTPClient http;
-    
+  WiFiClient  client;  
   // Your Domain name with URL path or IP address with path
-  http.begin(serverName);
+  http.begin(client,serverName);
   
   // Send HTTP POST request
   int httpResponseCode = http.GET();
@@ -89,4 +89,3 @@ String httpGETRequest(const char* serverName) {
 
   return payload;
 }
-s
