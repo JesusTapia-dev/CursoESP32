@@ -47,11 +47,12 @@ void loop() {
         Serial.println("Parsing input failed!");
         return;
       }
-      //La temperatura esta en kelvin
       Serial.print("JSON object = ");
       Serial.println(myObject);
       Serial.print("Temperatura: ");
-      Serial.println(myObject["main"]["temp"]);
+      int temperatura=myObject["main"]["temp"];
+      temperatura=temperatura-273;
+      Serial.println(temperatura);
       Serial.print("Presión: ");
       Serial.println(myObject["main"]["pressure"]);
       Serial.print("Humedad: ");
