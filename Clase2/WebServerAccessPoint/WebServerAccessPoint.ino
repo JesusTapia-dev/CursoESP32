@@ -1,12 +1,12 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-/* Put your SSID & Password */
-const char* ssid = "ESP8266";  // Enter SSID here
-const char* password = "12345678";  //Enter Password here
+/* Ponemos el nombre y contraseña de la red a crear*/
+const char* ssid = "ESP8266";  
+const char* password = "12345678"; 
 
-/* Put IP Address details */
-IPAddress local_ip(192,168,1,2);
+/* Ponemos los datos de la red creada */
+IPAddress local_ip(192,168,1,250);
 IPAddress gateway(192,168,1,1);
 IPAddress subnet(255,255,255,0);
 
@@ -36,7 +36,7 @@ void setup() {
   
   server.begin();
   Serial.println("");
-  Serial.println("HTTP server started");
+  Serial.println("Servidor HTTP iniciado.");
 }
 void loop() {
   server.handleClient();
@@ -54,31 +54,31 @@ void loop() {
 void handle_OnConnect() {
   LED1status = LOW;
   LED2status = LOW;
-  Serial.println("GPIO4 Status: OFF | GPIO5 Status: OFF");
+  Serial.println("Estado GPIO4: OFF | Estado GPIO5: OFF");
   server.send(200, "text/html", SendHTML(LED1status,LED2status)); 
 }
 
 void handle_led1on() {
   LED1status = HIGH;
-  Serial.println("GPIO4 Status: ON");
+  Serial.println("Estado GPIO4: ON");
   server.send(200, "text/html", SendHTML(true,LED2status)); 
 }
 
 void handle_led1off() {
   LED1status = LOW;
-  Serial.println("GPIO4 Status: OFF");
+  Serial.println("Estado GPIO4: OFF");
   server.send(200, "text/html", SendHTML(false,LED2status)); 
 }
 
 void handle_led2on() {
   LED2status = HIGH;
-  Serial.println("GPIO5 Status: ON");
+  Serial.println("Estado GPIO5: ON");
   server.send(200, "text/html", SendHTML(LED1status,true)); 
 }
 
 void handle_led2off() {
   LED2status = LOW;
-  Serial.println("GPIO5 Status: OFF");
+  Serial.println("Estado GPIO5: OFF");
   server.send(200, "text/html", SendHTML(LED1status,false)); 
 }
 
@@ -102,17 +102,17 @@ String SendHTML(uint8_t led1stat,uint8_t led2stat){
   ptr +="</head>\n";
   ptr +="<body>\n";
   ptr +="<h1>ESP32 Web Server</h1>\n";
-  ptr +="<h3>Using Access Point(AP) Mode</h3>\n";
+  ptr +="<h3>Usando el modo Access Point(AP)</h3>\n";
   
    if(led1stat)
-  {ptr +="<p>LED1 Status: ON</p><a class=\"button button-off\" href=\"/led1off\">OFF</a>\n";}
+  {ptr +="<p>Estado LED1: ON</p><a class=\"button button-off\" href=\"/led1off\">OFF</a>\n";}
   else
-  {ptr +="<p>LED1 Status: OFF</p><a class=\"button button-on\" href=\"/led1on\">ON</a>\n";}
+  {ptr +="<p>Estado LED1: OFF</p><a class=\"button button-on\" href=\"/led1on\">ON</a>\n";}
 
   if(led2stat)
-  {ptr +="<p>LED2 Status: ON</p><a class=\"button button-off\" href=\"/led2off\">OFF</a>\n";}
+  {ptr +="<p>Estado LED2: ON</p><a class=\"button button-off\" href=\"/led2off\">OFF</a>\n";}
   else
-  {ptr +="<p>LED2 Status: OFF</p><a class=\"button button-on\" href=\"/led2on\">ON</a>\n";}
+  {ptr +="<p>Estado LED2: OFF</p><a class=\"button button-on\" href=\"/led2on\">ON</a>\n";}
 
   ptr +="</body>\n";
   ptr +="</html>\n";
