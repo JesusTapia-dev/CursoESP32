@@ -1,0 +1,39 @@
+<title>Control de LEDs </title>
+<style>html { 
+    font-family: Helvetica; 
+    display: inline-block; 
+    margin: 0px auto; 
+    text-align: center;}
+body{margin-top: 50px;} 
+h1 {color: #444444;margin: 50px auto 30px;} 
+h3 {color: #444444;margin-bottom: 50px;}
+.button {
+    display: block;
+    width: 80px;
+    background-color: #148752;
+    border: none;
+    color: white;
+    padding: 13px 30px;
+    text-decoration: none;
+    font-size: 25px;
+    margin: 0px auto 35px;
+    cursor: pointer;
+    border-radius: 4px;}
+.button-on{background-color: #19415b;}
+.button-on:active {background-color: #122029;}
+.button-off{
+    display: block;
+    background-color: #4a8ed1;}
+.button-off:active {background-color: #2c3e50;}
+p {font-size: 14px;color: #888;margin-bottom: 10px;}
+</style>
+
+</head>
+<body>
+    <h1>ESP32 Web Server- CTIC UNI</h1>
+    <h3>Usando el modo Access Point (AP)</h3>
+    <p>Estado del LED1 : Encendido </p>
+    <a class="button button-off" name="LED_OFF">OFF</a>
+    <p>Estado del LED2 : Apagado </p>
+    <a class="button button-on" name="LED_ON">ON</a>
+</body>
