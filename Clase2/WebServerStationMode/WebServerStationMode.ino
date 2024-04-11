@@ -1,10 +1,10 @@
-#include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
+#include <WiFi.h>
+#include <WebServer.h>
 /*Put your SSID & Password*/
 const char* ssid = "DESKTOP";  // Enter SSID here
 const char* password = "12345678";  //Enter Password here
 
-ESP8266WebServer server(80);
+WebServer server(80);
 
 uint8_t LED1pin = 4;
 bool LED1status = LOW;

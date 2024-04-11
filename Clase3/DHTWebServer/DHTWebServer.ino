@@ -1,6 +1,5 @@
 
-
-#include "ESP8266WiFi.h"
+#include "WiFi.h"
 #include "ESPAsyncWebServer.h"
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
@@ -13,7 +12,7 @@ const char* password = "12345678";
 
 // Uncomment the type of sensor in use:
 //#define DHTTYPE    DHT11     // DHT 11
-#define DHTTYPE    DHT22     // DHT 22 (AM2302)
+#define DHTTYPE    DHT11     // DHT 22 (AM2302)
 //#define DHTTYPE    DHT21     // DHT 21 (AM2301)
 
 DHT dht(DHTPIN, DHTTYPE);
@@ -25,7 +24,7 @@ String readDHTTemperature() {
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
   // Read temperature as Celsius (the default)
   float t = dht.readTemperature();
-  //float t = dht.readTemperature(true);
+  t=random(22,28);
   // Check if any reads failed and exit early (to try again).
   if (isnan(t)) {    
     Serial.println("Ha ocurrido un error con el sensor!");
@@ -40,6 +39,7 @@ String readDHTTemperature() {
 String readDHTHumidity() {
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
   float h = dht.readHumidity();
+  h=random(1,15);
   if (isnan(h)) {
     Serial.println("Failed to read from DHT sensor!");
     return "--";
@@ -129,18 +129,14 @@ void setup(){
   Serial.begin(115200);
 
   dht.begin();
-  
+
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
-    Serial.println("Connecting to WiFi..");
+    Serial.println("Conectandose a la red WiFi..");
   }
-
-  // Print ESP32 Local IP Address
   Serial.println(WiFi.localIP());
-
-  // Route for root / web page
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send_P(200, "text/html", index_html, processor);
   });
@@ -153,8 +149,8 @@ void setup(){
 
   // Start server
   server.begin();
+
 }
  
 void loop(){
-  
 }

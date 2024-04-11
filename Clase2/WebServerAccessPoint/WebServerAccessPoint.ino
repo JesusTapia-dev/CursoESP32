@@ -1,16 +1,16 @@
-#include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
+#include <WiFi.h>
+#include <WebServer.h>
 
 /* Ponemos el nombre y contraseña de la red a crear*/
-const char* ssid = "ESP8266";  
+const char* ssid = "ESP32_AP";  
 const char* password = "12345678"; 
 
 /* Ponemos los datos de la red creada */
-IPAddress local_ip(192,168,1,250);
+IPAddress local_ip(192,168,1,1);
 IPAddress gateway(192,168,1,1);
 IPAddress subnet(255,255,255,0);
 
-ESP8266WebServer server(80);
+WebServer server(80);
 
 uint8_t LED1pin = 4;
 bool LED1status = LOW;
@@ -36,6 +36,10 @@ void setup() {
   
   server.begin();
   Serial.println("");
+  Serial.println("WiFi connected..!");
+  Serial.print("Got IP: "); 
+  Serial.println(WiFi.localIP());
+
   Serial.println("Servidor HTTP iniciado.");
 }
 void loop() {

@@ -1,4 +1,4 @@
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
 // Ponemos las credenciales de la red WIFI
 const char* ssid="DESKTOP";
 const char* password="12345678";

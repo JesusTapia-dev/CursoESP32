@@ -1,5 +1,5 @@
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
+#include <WiFi.h>
+#include <HTTPClient.h>
 
 // Sustituir por los datos de vuestro WiFi
 const char* ssid="DESKTOP";
