@@ -73,6 +73,7 @@ const char index_html[] PROGMEM = R"rawliteral(
   </style>
 </head>
 <body>
+ <title>ESP32 DHT Web server</title>
   <h2>ESP32 DHT Server</h2>
   <p>
     <i class="fas fa-thermometer-half" style="color:#059e8a;"></i> 

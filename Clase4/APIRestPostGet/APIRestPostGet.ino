@@ -2,18 +2,18 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include <ArduinoJson.h>
-#include <FreeRTOS.h>
 #include <Adafruit_Sensor.h>
-#include <DHT.h>
+#include <Adafruit_BME280.h>
 
-const char *SSID = "YOUR_SSID";
-const char *PWD = "YOUR_PASSWORD";
+
+const char *SSID = "DESKTOP";
+const char *PWD = "12345678";
 
 const int red_pin = 5;   
 const int green_pin = 18; 
 const int blue_pin = 19; 
 
-// Setting PWM frequency, channels and bit resolution
+//  Ajuste de la frecuencia PWM, los canales y la resolución de bits
 const int frequency = 5000;
 const int redChannel = 0;
 const int greenChannel = 1;
@@ -58,12 +58,18 @@ void add_json_object(char *tag, float value, char *unit) {
 
 void read_sensor_data(void * parameter) {
    for (;;) {
-     temperature = bme.readTemperature();
+    //como no contamos con el sensor
+    // trabajamos con valores random
+     /*temperature = bme.readTemperature();
      humidity = bme.readHumidity();
      pressure = bme.readPressure() / 100;
+     */
+     temperature=random(22,28);
+     humidity=random(70,80);
+     pressure=random(100,120);
      Serial.println("Read sensor data");
  
-     vTaskDelay(60000 / portTICK_PERIOD_MS);
+     vTaskDelay(10000 / portTICK_PERIOD_MS);
    }
 }
  
@@ -109,7 +115,7 @@ void handlePost() {
   ledcWrite(greenChannel,green_value);
   ledcWrite(blueChannel, blue_value);
 
-  server.send(200, "application/json", "{}");
+  server.send(200, "application/json", "exitoso!");
 }
 
 void setup_task() {    
@@ -138,14 +144,14 @@ void setup() {
     Serial.println("BME280 not found! Check Circuit");    
   }    
 
-  Serial.print("Connecting to Wi-Fi");
+  Serial.print("Conectandose al WiFi");
   WiFi.begin(SSID, PWD);
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
     delay(500);
   }
  
-  Serial.print("Connected! IP Address: ");
+  Serial.print("Conectado! Dirección IP: ");
   Serial.println(WiFi.localIP());
   setup_task();    
   setup_routing();     
