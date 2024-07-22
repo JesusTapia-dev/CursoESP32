@@ -37,7 +37,7 @@ void callback(char *topic, byte *payload, unsigned int length) {
   // Convierte la cadena a un número (en este caso, asume que es un float)
   float valorfloat = atof(receivedValue);
   float control=valorfloat*valorfloat; 
-  // Publica el resultado en el tópico de voltaje
+  // Publica el resultado en el tópico cursoTest/result"
   char result[10];
   snprintf(result, sizeof(result), "%.2f", control);
   client.publish(publish_respuesta_topic, result);
