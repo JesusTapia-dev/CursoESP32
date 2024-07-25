@@ -1,0 +1,179 @@
+[
+    {
+        "id": "0c26349b3b1615a0",
+        "type": "tab",
+        "label": "Flow 6",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a674bf9b0af276e9",
+        "type": "json",
+        "z": "0c26349b3b1615a0",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 260,
+        "y": 240,
+        "wires": [
+            [
+                "85af5a044fcea92c"
+            ]
+        ]
+    },
+    {
+        "id": "85af5a044fcea92c",
+        "type": "function",
+        "z": "0c26349b3b1615a0",
+        "name": "function 4",
+        "func": "let voltages = msg.payload[0].voltages;\nlet data = voltages.map((value, index) => ({\n    x: index,\n    y: value\n}));\nmsg.payload = [{ series: ['Voltages'], data: [data], labels: ['Time'] }];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 240,
+        "wires": [
+            [
+                "8b8a2931fb3f81a3",
+                "dce35a2b42d07376"
+            ]
+        ]
+    },
+    {
+        "id": "8b8a2931fb3f81a3",
+        "type": "ui_chart",
+        "z": "0c26349b3b1615a0",
+        "name": "",
+        "group": "28ea09137d1f6987",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 610,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dce35a2b42d07376",
+        "type": "debug",
+        "z": "0c26349b3b1615a0",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3371369dcfea818f",
+        "type": "mqtt in",
+        "z": "0c26349b3b1615a0",
+        "name": "",
+        "topic": "pruebasNodeRed",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "9855f3af1aee1362",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 80,
+        "y": 240,
+        "wires": [
+            [
+                "a674bf9b0af276e9"
+            ]
+        ]
+    },
+    {
+        "id": "28ea09137d1f6987",
+        "type": "ui_group",
+        "name": "Pruebas",
+        "tab": "7adf3cf201b6f928",
+        "order": 1,
+        "disp": true,
+        "width": 8,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9855f3af1aee1362",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "7adf3cf201b6f928",
+        "type": "ui_tab",
+        "name": "GraficaMQTT",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

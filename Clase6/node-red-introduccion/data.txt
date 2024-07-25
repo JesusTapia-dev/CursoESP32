@@ -1,0 +1,2 @@
+[{"voltages":[1,2,3,1],
+"info":["sensor1","sensor2","sensor3","cod"]}]

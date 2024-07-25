@@ -1,0 +1,286 @@
+[
+    {
+        "id": "10000f902d2d5b33",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0b658391c46a29dc",
+        "type": "inject",
+        "z": "10000f902d2d5b33",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 120,
+        "wires": [
+            [
+                "dd4ee0b714e58b8f"
+            ]
+        ]
+    },
+    {
+        "id": "dd4ee0b714e58b8f",
+        "type": "http request",
+        "z": "10000f902d2d5b33",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.csv",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 120,
+        "wires": [
+            [
+                "0ef0dc6649931cf1"
+            ]
+        ]
+    },
+    {
+        "id": "0ef0dc6649931cf1",
+        "type": "csv",
+        "z": "10000f902d2d5b33",
+        "name": "",
+        "spec": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\r\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "a3c6a4751f7a4eed",
+                "5c336610617ac8ef",
+                "f85b0322654e4091"
+            ]
+        ]
+    },
+    {
+        "id": "a3c6a4751f7a4eed",
+        "type": "debug",
+        "z": "10000f902d2d5b33",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5c336610617ac8ef",
+        "type": "switch",
+        "z": "10000f902d2d5b33",
+        "name": "",
+        "property": "payload.mag",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "7",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 260,
+        "wires": [
+            [
+                "a304d7d8cfe65cb0"
+            ]
+        ]
+    },
+    {
+        "id": "a304d7d8cfe65cb0",
+        "type": "change",
+        "z": "10000f902d2d5b33",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "PANICO",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 260,
+        "wires": [
+            [
+                "691beb1aa668a677",
+                "5ade5cbe21982599"
+            ]
+        ]
+    },
+    {
+        "id": "691beb1aa668a677",
+        "type": "debug",
+        "z": "10000f902d2d5b33",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "786b9aacfa2e00b1",
+        "type": "ui_chart",
+        "z": "10000f902d2d5b33",
+        "name": "chart magnitud",
+        "group": "3dbafdc5f2985d19",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "a",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 740,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f85b0322654e4091",
+        "type": "change",
+        "z": "10000f902d2d5b33",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.mag",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 200,
+        "wires": [
+            [
+                "786b9aacfa2e00b1"
+            ]
+        ]
+    },
+    {
+        "id": "5ade5cbe21982599",
+        "type": "ui_toast",
+        "z": "10000f902d2d5b33",
+        "position": "dialog",
+        "displayTime": "10",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "Cancel",
+        "raw": false,
+        "className": "",
+        "topic": "Emergencia",
+        "name": "",
+        "x": 670,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3dbafdc5f2985d19",
+        "type": "ui_group",
+        "name": "Magnitud",
+        "tab": "970b5ff49ddd60ca",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "970b5ff49ddd60ca",
+        "type": "ui_tab",
+        "name": "Terremoto",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]

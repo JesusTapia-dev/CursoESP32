@@ -1,0 +1,75 @@
+[
+    {
+        "id": "6806a454db7646ec",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "08201d1e5ea4f5ac",
+        "type": "inject",
+        "z": "6806a454db7646ec",
+        "name": "Hello",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hola, mundo!",
+        "payloadType": "str",
+        "x": 110,
+        "y": 140,
+        "wires": [
+            [
+                "114355c453a0af20"
+            ]
+        ]
+    },
+    {
+        "id": "10fe2ee807093dd2",
+        "type": "debug",
+        "z": "6806a454db7646ec",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "114355c453a0af20",
+        "type": "function",
+        "z": "6806a454db7646ec",
+        "name": "function 1",
+        "func": "var dateNow = new Date();\nvar timeAsString = dateNow.toLocaleTimeString();\n\nmsg.payload = msg.payload +\n    ' La hora es ' +\n    timeAsString + '.';\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 160,
+        "wires": [
+            [
+                "10fe2ee807093dd2"
+            ]
+        ]
+    }
+]
