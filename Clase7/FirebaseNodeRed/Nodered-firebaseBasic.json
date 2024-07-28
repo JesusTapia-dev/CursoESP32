@@ -1,0 +1,225 @@
+[
+    {
+        "id": "ec0e556b98ad3117",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f983e5d8566d6d2a",
+        "type": "firebase-out",
+        "z": "ec0e556b98ad3117",
+        "name": "",
+        "database": "540d6ce5ade8ea10",
+        "path": "RDdata/timestamp",
+        "pathType": "str",
+        "priority": "1",
+        "queryType": "update",
+        "x": 500,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a3cec963f268bfab",
+        "type": "inject",
+        "z": "ec0e556b98ad3117",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"-O2rKql13Gpl-BC9Pgk8 \": \"hola\"}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "f983e5d8566d6d2a",
+                "466ac181388d9d74"
+            ]
+        ]
+    },
+    {
+        "id": "466ac181388d9d74",
+        "type": "debug",
+        "z": "ec0e556b98ad3117",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "09537bab4dda387a",
+        "type": "firebase-in",
+        "z": "ec0e556b98ad3117",
+        "name": "",
+        "constraints": {},
+        "database": "540d6ce5ade8ea10",
+        "inputs": 0,
+        "listenerType": "child_added",
+        "outputType": "auto",
+        "passThrough": false,
+        "path": "test/push",
+        "pathType": "str",
+        "useConstraints": false,
+        "x": 140,
+        "y": 340,
+        "wires": [
+            [
+                "e292671eddaded79",
+                "a6d041a1d6b58384"
+            ]
+        ]
+    },
+    {
+        "id": "a6d041a1d6b58384",
+        "type": "debug",
+        "z": "ec0e556b98ad3117",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 340,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e9fb29e6380d1a63",
+        "type": "inject",
+        "z": "ec0e556b98ad3117",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "17",
+        "payloadType": "num",
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "72c7eb0f9a13fc39"
+            ]
+        ]
+    },
+    {
+        "id": "72c7eb0f9a13fc39",
+        "type": "firebase-out",
+        "z": "ec0e556b98ad3117",
+        "name": "",
+        "database": "540d6ce5ade8ea10",
+        "path": "test/push",
+        "pathType": "str",
+        "priority": "1",
+        "queryType": "push",
+        "x": 460,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e292671eddaded79",
+        "type": "ui_chart",
+        "z": "ec0e556b98ad3117",
+        "name": "",
+        "group": "79ceb363e9e7a474",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "monotone",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "12",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 330,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "540d6ce5ade8ea10",
+        "type": "firebase-config",
+        "name": "My Database",
+        "authType": "anonymous",
+        "claims": {},
+        "createUser": false,
+        "useClaims": false
+    },
+    {
+        "id": "79ceb363e9e7a474",
+        "type": "ui_group",
+        "name": "Test",
+        "tab": "cbe7655d6f8f71b5",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cbe7655d6f8f71b5",
+        "type": "ui_tab",
+        "name": "Firebase",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
